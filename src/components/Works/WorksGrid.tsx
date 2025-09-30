@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
-import { WorkCard } from './WorkCard'
+import WorkCardLegacy from './WorkCardLegacy'
 import Tilt from 'react-parallax-tilt'
 import { projects } from '@/data/projects'
 
@@ -71,7 +71,7 @@ export function WorksGrid() {
           {filteredProjects.map((project) => (
             <div key={project.id} className="work-card">
               <Tilt tiltMaxAngleX={15} tiltMaxAngleY={15} scale={1.05} transitionSpeed={1000}>
-                <WorkCard project={project} />
+                <WorkCardLegacy project={project} />
               </Tilt>
             </div>
           ))}
