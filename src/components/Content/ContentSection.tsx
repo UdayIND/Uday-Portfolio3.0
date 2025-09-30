@@ -8,130 +8,100 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ContentSection() {
   useEffect(() => {
-    const contentWrappers = document.querySelectorAll(".content-row");
-    
-    contentWrappers.forEach((contentWrapper) => {
-      const image = contentWrapper.querySelector(".content-image img");
-      const counter = contentWrapper.querySelector(".counter");
-      const subtitle = contentWrapper.querySelector(".content-subtitle");
-      const title = contentWrapper.querySelectorAll(".content-title span");
-      const description = contentWrapper.querySelector(".content-copy");
-      const action = contentWrapper.querySelector(".content-action");
-
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: contentWrapper,
-            start: "center-=100 center",
-            end: "center top",
-            scrub: 0.2,
-            pin: contentWrapper,
-            invalidateOnRefresh: true,
-          },
-        })
-        .fromTo(
-          [subtitle, title, description, action],
-          { autoAlpha: 0, y: 100, stagger: 0.2 },
-          { autoAlpha: 1, y: 0, stagger: 0.2 },
-          "0"
-        )
-        .fromTo(counter, { autoAlpha: 0 }, { autoAlpha: 1 }, "0")
-        .fromTo(
-          image,
-          { autoAlpha: 0, scale: 1.5 },
-          { autoAlpha: 1, scale: 1 },
-          "0"
-        );
+    // Simple fade-in animation for the cards
+    gsap.from(".step-card", {
+      scrollTrigger: {
+        trigger: ".steps-grid",
+        start: "top 80%",
+      },
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+      stagger: 0.2,
     });
   }, []);
 
   return (
-    <section className="content-section section relative z-[5] -mt-[50%]">
-      <div className="container max-w-[1462px] mx-auto px-6">
-        {/* Section 1 */}
-        <div className="content-wrapper mb-20" id="section-01">
-          <div className="content-row flex flex-col md:flex-row items-center gap-16">
-            <div className="content-image flex-1">
-              <img src="/mntn/step-1.png" alt="Get Started" className="w-full h-auto" />
-            </div>
-            <div className="content-content flex-1 pl-0">
-              <h5 className="content-subtitle text-sm text-[#fbd784] uppercase tracking-[6px] mb-7 inline-flex items-center gap-8 relative">
-                <span className="w-10 h-[2px] bg-[#fbd784]" />
-                <span className="counter text-[140px] font-bold text-white/10 absolute left-0 top-1/2 -translate-y-1/2 leading-none -z-10">01</span>
-                GEt Started
-              </h5>
-              <p className="content-copy text-sm text-white leading-8 mb-7">
-                Determining what level of hiker you are can be an important tool when planning future hikes. This hiking level guide will help you plan hikes according to different hike ratings set by various websites like All Trails and Modern Hiker. What type of hiker are you – novice, moderate, advanced moderate, expert, or expert backpacker?
-              </p>
-              <a href="#" className="content-action text-[#fbd784] inline-flex items-center gap-4 hover:gap-6 transition-all">
-                read more
-                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16 0L14.59 1.41L20.17 7H0V9H20.17L14.58 14.58L16 16L24 8L16 0Z" fill="#FBD784" />
-                </svg>
-              </a>
-            </div>
-          </div>
+    <section className="content-section py-20 relative z-[5]">
+      <div className="container max-w-7xl mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h5 className="text-sm text-[#fbd784] uppercase tracking-[6px] mb-4 inline-flex items-center gap-4">
+            <span className="w-10 h-[2px] bg-[#fbd784]" />
+            Explore
+            <span className="w-10 h-[2px] bg-[#fbd784]" />
+          </h5>
+          <h2 className="text-5xl md:text-6xl font-serif font-medium text-white">
+            The Journey
+          </h2>
         </div>
 
-        {/* Section 2 */}
-        <div className="content-wrapper mb-20" id="section-02">
-          <div className="content-row flex flex-col md:flex-row items-center gap-16">
-            <div className="content-image flex-1">
-              <img src="/mntn/step-2.png" alt="Hiking Essentials" className="w-full h-auto" />
+        {/* 3 Step Images Grid */}
+        <div className="steps-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Step 1 */}
+          <div className="step-card group">
+            <div className="relative overflow-hidden rounded-2xl mb-6">
+              <img 
+                src="/mntn/step-1.png" 
+                alt="Get Started" 
+                className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute top-6 left-6">
+                <span className="text-[#fbd784] text-8xl font-bold opacity-20">01</span>
+              </div>
             </div>
-            <div className="content-content flex-1 pl-0">
-              <h5 className="content-subtitle text-sm text-[#fbd784] uppercase tracking-[6px] mb-7 inline-flex items-center gap-8 relative">
-                <span className="w-10 h-[2px] bg-[#fbd784]" />
-                <span className="counter text-[140px] font-bold text-white/10 absolute left-0 top-1/2 -translate-y-1/2 leading-none -z-10">02</span>
-                Hiking Essentials
-              </h5>
-              <h2 className="content-title text-4xl font-serif text-white mb-7 font-medium">
-                <span className="block">Picking the right</span>
-                <span className="block">Hiking Gear!</span>
-              </h2>
-              <p className="content-copy text-sm text-white leading-8 mb-7">
-                Determining what level of hiker you are can be an important tool when planning future hikes. This hiking level guide will help you plan hikes according to different hike ratings set by various websites like All Trails and Modern Hiker. What type of hiker are you – novice, moderate, advanced moderate, expert, or expert backpacker?
-              </p>
-              <a href="#" className="content-action text-[#fbd784] inline-flex items-center gap-4 hover:gap-6 transition-all">
-                read more
-                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16 0L14.59 1.41L20.17 7H0V9H20.17L14.58 14.58L16 16L24 8L16 0Z" fill="#FBD784" />
-                </svg>
-              </a>
-            </div>
+            <h3 className="text-2xl font-serif text-white mb-3 flex items-center gap-3">
+              <span className="w-10 h-[2px] bg-[#fbd784]" />
+              Get Started
+            </h3>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Determining what level of hiker you are can be an important tool when planning future hikes.
+            </p>
           </div>
-        </div>
 
-        {/* Section 3 */}
-        <div className="content-wrapper mb-20" id="section-03">
-          <div className="content-row flex flex-col md:flex-row items-center gap-16">
-            <div className="content-image flex-1">
-              <img src="/mntn/step-3.png" alt="Map & Timing" className="w-full h-auto" />
+          {/* Step 2 */}
+          <div className="step-card group">
+            <div className="relative overflow-hidden rounded-2xl mb-6">
+              <img 
+                src="/mntn/step-2.png" 
+                alt="Hiking Essentials" 
+                className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute top-6 left-6">
+                <span className="text-[#fbd784] text-8xl font-bold opacity-20">02</span>
+              </div>
             </div>
-            <div className="content-content flex-1 pl-0">
-              <h5 className="content-subtitle text-sm text-[#fbd784] uppercase tracking-[6px] mb-7 inline-flex items-center gap-8 relative">
-                <span className="w-10 h-[2px] bg-[#fbd784]" />
-                <span className="counter text-[140px] font-bold text-white/10 absolute left-0 top-1/2 -translate-y-1/2 leading-none -z-10">03</span>
-                where you go is the key
-              </h5>
-              <h2 className="content-title text-4xl font-serif text-white mb-7 font-medium">
-                <span className="block">Understand Your</span>
-                <span className="block">Map & Timing</span>
-              </h2>
-              <p className="content-copy text-sm text-white leading-8 mb-7">
-                Determining what level of hiker you are can be an important tool when planning future hikes. This hiking level guide will help you plan hikes according to different hike ratings set by various websites like All Trails and Modern Hiker. What type of hiker are you – novice, moderate, advanced moderate, expert, or expert backpacker?
-              </p>
-              <a href="#" className="content-action text-[#fbd784] inline-flex items-center gap-4 hover:gap-6 transition-all">
-                read more
-                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16 0L14.59 1.41L20.17 7H0V9H20.17L14.58 14.58L16 16L24 8L16 0Z" fill="#FBD784" />
-                </svg>
-              </a>
+            <h3 className="text-2xl font-serif text-white mb-3 flex items-center gap-3">
+              <span className="w-10 h-[2px] bg-[#fbd784]" />
+              Hiking Essentials
+            </h3>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Picking the right hiking gear is crucial for a safe and enjoyable adventure.
+            </p>
+          </div>
+
+          {/* Step 3 */}
+          <div className="step-card group">
+            <div className="relative overflow-hidden rounded-2xl mb-6">
+              <img 
+                src="/mntn/step-3.png" 
+                alt="Map & Timing" 
+                className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute top-6 left-6">
+                <span className="text-[#fbd784] text-8xl font-bold opacity-20">03</span>
+              </div>
             </div>
+            <h3 className="text-2xl font-serif text-white mb-3 flex items-center gap-3">
+              <span className="w-10 h-[2px] bg-[#fbd784]" />
+              Map & Timing
+            </h3>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Understanding your map and timing ensures you stay on track throughout your journey.
+            </p>
           </div>
         </div>
       </div>
     </section>
   );
 }
-
