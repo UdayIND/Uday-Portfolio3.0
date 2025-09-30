@@ -5,59 +5,9 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import { WorkCard } from './WorkCard'
 import Tilt from 'react-parallax-tilt'
+import { projects } from '@/data/projects'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const projects = [
-  {
-    id: 1,
-    title: 'E-Commerce Platform',
-    category: 'web',
-    description: 'Full-stack e-commerce solution with React, Node.js, and Stripe integration.',
-    image: '/images/works/project1.jpg',
-    tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-  },
-  {
-    id: 2,
-    title: 'AI Chat Application',
-    category: 'ai',
-    description: 'Real-time chat application powered by OpenAI GPT-3.5 with custom fine-tuning.',
-    image: '/images/works/project2.jpg',
-    tech: ['Next.js', 'OpenAI', 'Socket.io', 'PostgreSQL'],
-  },
-  {
-    id: 3,
-    title: 'Design System',
-    category: 'design',
-    description: 'Comprehensive design system with 200+ components and documentation.',
-    image: '/images/works/project3.jpg',
-    tech: ['Figma', 'Storybook', 'React', 'TypeScript'],
-  },
-  {
-    id: 4,
-    title: 'Mobile Banking App',
-    category: 'web',
-    description: 'Cross-platform mobile banking application with biometric authentication.',
-    image: '/images/works/project4.jpg',
-    tech: ['React Native', 'Node.js', 'Firebase', 'Biometrics'],
-  },
-  {
-    id: 5,
-    title: 'Machine Learning Dashboard',
-    category: 'ai',
-    description: 'ML model monitoring and visualization dashboard with real-time predictions.',
-    image: '/images/works/project5.jpg',
-    tech: ['Python', 'TensorFlow', 'D3.js', 'FastAPI'],
-  },
-  {
-    id: 6,
-    title: 'Brand Identity Package',
-    category: 'design',
-    description: 'Complete brand identity including logo, colors, typography, and guidelines.',
-    image: '/images/works/project6.jpg',
-    tech: ['Adobe CC', 'Figma', 'Brand Strategy'],
-  },
-]
 
 export function WorksGrid() {
   const gridRef = useRef<HTMLDivElement>(null)
