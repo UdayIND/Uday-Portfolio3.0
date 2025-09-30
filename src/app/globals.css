@@ -19,21 +19,193 @@
   h4,
   h5,
   h6 {
-    font-family: "Chronicle Display", "Bentham", Georgia, serif;
+    font-family: "Bentham", Georgia, serif;
   }
 }
 
 @layer components {
+  /* Hero Section - Exact MNTN styling */
+  .hero-section {
+    position: relative;
+    padding-bottom: 140px;
+    overflow: hidden;
+    max-height: 100vh;
+  }
+
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      -33.26deg,
+      rgba(11, 29, 38, 0%) 0%,
+      rgba(11, 29, 38, 0.6) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 550px;
+    z-index: 5;
+    background-image: linear-gradient(
+      180deg,
+      rgba(11, 29, 38, 0),
+      #0b1d26,
+      #0b1d26
+    );
+  }
+
+  .hero-image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
+  }
+
+  .hero-image-wrapper img {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-image-wrapper img.sky {
+    margin-top: 0%;
+    position: relative;
+    transform: translateY(-50%);
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  .hero-image-wrapper img.mountains {
+    margin-top: -170%;
+    z-index: 1;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  .hero-image-wrapper img.man-standing {
+    margin-top: -150%;
+    z-index: 4;
+    height: 330px;
+    object-fit: cover;
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    z-index: 6;
+    height: auto;
+    width: 100%;
+    max-width: 1030px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .hero-subtitle {
+    font-size: 12px;
+    color: #fbd784;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 32px;
+  }
+
+  .hero-subtitle::before {
+    content: "";
+    height: 2px;
+    width: 72px;
+    background-color: #fbd784;
+    display: inline-block;
+  }
+
+  .hero-title {
+    font-size: clamp(40px, 8vw, 88px);
+    line-height: 1.1;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 32px;
+    font-family: "Bentham", serif;
+  }
+
+  .hero-title span {
+    display: inline-block;
+  }
+
+  .hero-action {
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  /* Slider/Stepper */
+  .slider {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: right;
+    z-index: 9;
+  }
+
+  .slider .container {
+    padding: 0;
+    display: flex;
+    gap: 32px;
+    justify-content: flex-end;
+    max-width: 1500px;
+  }
+
+  .slider-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 15px 0;
+  }
+
+  .slider-list-item a {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .slider-progress {
+    height: auto;
+    width: 3px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .slider-progress-bar {
+    width: 100%;
+    height: 0%;
+    background-color: #fff;
+  }
+
+  /* Section container */
   .section-container {
     @apply w-full max-w-7xl mx-auto px-6 md:px-12;
-  }
-
-  .section-title-sm {
-    @apply text-sm uppercase tracking-widest text-gray-400;
-  }
-
-  .section-heading {
-    @apply text-4xl md:text-5xl font-bold text-white;
   }
 
   /* GSAP animations will change these */
@@ -52,14 +224,6 @@
 
   .skill {
     @apply transition-transform duration-300 hover:scale-110;
-  }
-
-  /* Hero animations */
-  .hero-subtitle,
-  .hero-title span,
-  .hero-action {
-    opacity: 0;
-    transform: translateY(100px);
   }
 }
 
@@ -110,10 +274,4 @@ html.lenis {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
-}
-
-/* Ensure images load properly */
-img {
-  max-width: 100%;
-  height: auto;
 }
