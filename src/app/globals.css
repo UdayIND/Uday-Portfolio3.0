@@ -9,7 +9,7 @@
 
   body {
     @apply bg-[#0b1d26] text-white antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
 
@@ -19,7 +19,7 @@
   h4,
   h5,
   h6 {
-    @apply font-serif;
+    font-family: "Chronicle Display", "Bentham", Georgia, serif;
   }
 }
 
@@ -38,7 +38,7 @@
 
   /* GSAP animations will change these */
   .seq {
-    opacity: 0;
+    opacity: 1;
   }
 
   /* Timeline SVG styles */
@@ -52,6 +52,14 @@
 
   .skill {
     @apply transition-transform duration-300 hover:scale-110;
+  }
+
+  /* Hero animations */
+  .hero-subtitle,
+  .hero-title span,
+  .hero-action {
+    opacity: 0;
+    transform: translateY(100px);
   }
 }
 
@@ -81,4 +89,31 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #fcd34d;
+}
+
+/* Smooth scroll behavior */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Ensure images load properly */
+img {
+  max-width: 100%;
+  height: auto;
 }
